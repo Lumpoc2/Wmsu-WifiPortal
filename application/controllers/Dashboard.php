@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Dashboard extends CI_Controller {
 	public function index()
 	{
+		
 		$ip = $this->session->userdata('ip');
         $user = $this->session->userdata('user');
        	$password = $this->session->userdata('password');

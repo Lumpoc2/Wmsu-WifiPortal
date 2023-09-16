@@ -6,9 +6,11 @@ class Auth extends CI_Controller
 	public function index()
 	{
     $this->load->view('auth/login');
+    
     }
     public function login()
     {   
+        
             $ip = $this->input->post('ip');
             $user = $this->input->post('user');
             $password = $this->input->post('password');
