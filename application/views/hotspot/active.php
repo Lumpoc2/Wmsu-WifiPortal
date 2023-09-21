@@ -25,31 +25,28 @@
                 <thead>
                   <tr>
                     <th><?= $totalhotspotactive ?></th>
-                    <th>User</th>
-                    <th>Server</th>
-                    <th>login by</th>
+                   
+                    <th>ip-Address</th>
+                    <th>Mac-address</th>
                     <th>Uptime</th>
                     <th>Bytes In</th>
                     <th>Bytes Out</th>
                     <th>Comment</th>
-                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php foreach ($hotspotactive as $data) { ?>
                     <tr>
-                      <th></th>
-                      <th><?= $data['user']; ?></th>
-                      <th><?= $data['server'] ?></th>
-                      <th><?= $data['login-by'] ?></th>
-                      <th><?= $data['profile'] ?></th>
-                      <th><?= $data['uptime'] ?></th>
-                      <th><?= formatBytes($data['bytes-in'], 2) ?></th>
-                      <th><?= formatBytes($data['bytes-out'], 3) ?></th>
-                      <th><?= $data['comment'] ?></th>
+                    <a href="<?= site_url('hotspot/delActive/' . $id)?>"onclick="return confirm('Delete Student  <?= $data['name']; ?> ?')"><i class="fa fa-trash" style="color: red"></i></a>
+                     <th><?= $data['address'];?></th>
+                     <th><?= $data['mac-address'];?></th>
+                     <th><?= $data['uptime'];?></th>
+                     <th><?= formatBytes($data['bytes-in'], 2) ?></th>
+                    <th><?= formatBytes($data['bytes-out'], 3) ?></th>
+                    <th><?= $data['comment'] ?></th>
                     </tr>
                   <?php } ?>
-                </tbody>
+                </tbody>              
               </table>
               <!-- /.card-body -->
             </div>

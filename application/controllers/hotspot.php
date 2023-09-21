@@ -69,6 +69,57 @@ class Hotspot extends CI_Controller
 		);
 		redirect('hotspot/users');
 	}
+	public function editUser($id){
+		$ip = $this->session->userdata('ip');
+		$user = $this->session->userdata('user');
+		$password = $this->session->userdata('password');
+		$API = new Mikweb();
+		$API->connect($ip, $user, $password);
+		$getuser = $API->comm("/ip/hotspot/user/print",array(
+			"?.id" => '*' .  $id,
+		));
+		// var_dump($getuser);
+		// dim;
+		$server = $API->comm("/ip/hotspot/print");
+		$profile = $API->comm("/ip/hotspot/user/profile/print");
+
+		$data = [
+			'title' => 'Edit User',
+			'user' => $getuser[0],
+			'server' => $server,
+			'profile' => $profile,
+		];
+		$this->load->view('template/main', $data);
+		$this->load->view('hotspot/edit-user', $data);
+	}
+	public function saveEditUser(){
+		$post = $this->input->post(null, true);
+		$ip = $this->session->userdata('ip');
+		$user = $this->session->userdata('user');
+		$password = $this->session->userdata('password');
+
+		$API = new Mikweb();
+		$API->connect($ip, $user, $password);
+
+		if ($post['timelimit'] == "") {
+			$timelimit = "0";
+
+		} else {
+			$timelimit = $post['timelimit'];
+		}
+		$API->comm("/ip/hotspot/user/set", array(
+			".id" => $post['id'],
+			"name" => $post['user'],
+			"password" => $post['password'],
+			"server" => $post['server'],
+			"profile" => $post['profile'],
+			"limit-uptime" => $timelimit,
+			"comment" => $post['comment'],
+
+		)
+		);
+		redirect('hotspot/users');
+	}
 	public function active()
 	{
 
@@ -81,7 +132,7 @@ class Hotspot extends CI_Controller
 
 
 		$data = [
-			'title' => 'User Hotspot',
+			'title' => 'Active Hotspot',
 			'totalhotspotactive' => count($hotspotactive),
 			'hotspotactive' => $hotspotactive,
 
@@ -89,6 +140,72 @@ class Hotspot extends CI_Controller
 		];
 		$this->load->view('template/main', $data);
 		$this->load->view('hotspot/active', $data);
+	}
+	public function delActive($id)
+	{
+		$ip = $this->session->userdata('ip');
+		$user = $this->session->userdata('user');
+		$password = $this->session->userdata('password');
+		$API = new Mikweb();
+		$API->connect($ip, $user, $password);
+		$API->comm("/ip/hotspot/active/remove", array(
+			".id" => '*' . $id,
+		)
+		);
+		redirect('hotspot/active');
+	}
+	public function profile()
+	{
+
+		$ip = $this->session->userdata('ip');
+		$user = $this->session->userdata('user');
+		$password = $this->session->userdata('password');
+		$API = new Mikweb();
+		$API->connect($ip, $user, $password);
+		$hotspotprofile = $API->comm("/ip/hotspot/user/profile/print");
+
+
+		$data = [
+			'title' => 'user profile',
+			'totalhotspotprofile' => count($hotspotprofile),
+			'hotspotprofile' => $hotspotprofile,
+
+
+		];
+		$this->load->view('template/main', $data);
+		$this->load->view('hotspot/profile', $data);
+	}
+	public function addUserProfile (){
+		$post = $this->input->post(null, true);
+		$ip = $this->session->userdata('ip');
+		$user = $this->session->userdata('user');
+		$password = $this->session->userdata('password');
+
+		$API = new Mikweb();
+		$API->connect($ip, $user, $password);
+
+		
+		$API->comm("/ip/hotspot/user/profile/add", array(
+			"name" => $post['user'],
+			"rate-limit" => $post['rate_limit'],
+			"shared-users" => $post['shared_user'],
+			"session-timeout" => $post['session_limit']
+
+		)
+		);
+		redirect('hotspot/profile');
+	}
+	public function delProfile($id){
+		$ip = $this->session->userdata('ip');
+		$user = $this->session->userdata('user');
+		$password = $this->session->userdata('password');
+		$API = new Mikweb();
+		$API->connect($ip, $user, $password);
+		$API->comm("/ip/hotspot/user/profile/remove", array(
+			".id" => '*' . $id,
+		)
+		);
+		redirect('hotspot/profile');
 	}
 }
 ini_set("display_errors", 'off');

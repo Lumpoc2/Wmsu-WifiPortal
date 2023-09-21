@@ -28,9 +28,7 @@
               <table class="table table-bordered table-hover" id="dataTable">
                 <thead>
                   <tr>
-                    <th>
-                      <?= $totalhotspotuser ?>
-                    </th>
+                    <th><?= $totalhotspotuser ?></th>
                     <th>Username</th>
                     <th>Password</th>
                     <th>Profile</th>
@@ -45,29 +43,17 @@
                   <?php foreach ($hotspotuser as $data) { ?>
                     <tr>
                     <?php $id = str_replace('*','',$data[".id"]) ?>
-                      <th><a href="<?= site_url('hotspot/delUser/' . $id)?>"onclick="return confirm('Delete Student  <?= $data['name']; ?> ?')"><i class="fa fa-trash" style="color: red"></i></a>
-                      </th>
                       <th>
-                        <?= $data['name']; ?>
-                      </th>
-                      <th>
-                        <?= $data['password'] ?>
-                      </th>
-                      <th>
-                        <?= $data['profile'] ?>
-                      </th>
-                      <th>
-                        <?= $data['uptime'] ?>
-                      </th>
-                      <th>
-                        <?= formatBytes($data['bytes-in'], 2) ?>
-                      </th>
-                      <th>
-                        <?= formatBytes($data['bytes-out'], 3) ?>
-                      </th>
-                      <th>
-                        <?= $data['comment'] ?>
-                      </th>
+                        <a href="<?= site_url('hotspot/editUser/' . $id)?>"><i class="fa fa-edit" style="color: green"></i></a>
+                        <a href="<?= site_url('hotspot/delUser/' . $id)?>"onclick="return confirm('Delete Student  <?= $data['name']; ?> ?')"><i class="fa fa-trash" style="color: red"></i></a>
+                      </th>  
+                      <th><?= $data['name']; ?></th>
+                      <th><?= $data['password']; ?></th>
+                      <th><?= $data['profile']; ?></th>
+                      <th><?= $data['uptime']; ?></th>
+                      <th><?= formatbytes($data['bytes-in'], 2); ?></th>
+                      <th><?= formatbytes($data['bytes-out'], 3); ?></th>
+                      <th><?= $data['comment']; ?></th>
                     </tr>
                   <?php } ?>
                 </tbody>
