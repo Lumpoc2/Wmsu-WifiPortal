@@ -187,6 +187,12 @@
             </a>
           </li>
           <li class="nav-item">
+                <a href="<?= site_url('students')?>" class="nav-link">
+                  <i class="far fa-user nav-icon"></i>
+                  <p>student</p>
+                </a>
+          </li>
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-wifi"></i>
               <p>
@@ -213,24 +219,6 @@
                   <p>Profile</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="pages/tables/data.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Host</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/tables/data.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Binding</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/tables/data.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Cookies</p>
-                </a>
-              </li>
             </ul>
           </li>
           <li class="nav-item">
@@ -246,12 +234,6 @@
                 <a href="pages/tables/simple.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Blocking Sites</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/tables/data.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Voucher</p>
                 </a>
               </li>
             </ul>

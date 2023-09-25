@@ -3,6 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Hotspot extends CI_Controller
 {
+	//view all controllers from the mikrotik 
 	public function users()
 	{
 
@@ -26,8 +27,10 @@ class Hotspot extends CI_Controller
 		$this->load->view('hotspot/users', $data);
 		//$this->load->view('template/footer');
 	}
+	//this controll is intended in adding a user from the mikrtotik hotspot
 	public function addUser()
 	{
+		
 		$post = $this->input->post(null, true);
 		$ip = $this->session->userdata('ip');
 		$user = $this->session->userdata('user');
@@ -48,11 +51,24 @@ class Hotspot extends CI_Controller
 			"server" => $post['server'],
 			"profile" => $post['profile'],
 			"limit-uptime" => $timelimit,
-			"comment" => $post['comment'],
-
-		)
+			"comment" => $post['comment'],  
+			
+		));
+		$data = array(
+			'name' => $post['user'],
+			'password' => $post['password'],
+			'server' => $post['server'],
+			'profile' => $post['profile'],
+			'limit-uptime' => $timelimit,
+			'comment' => $post['comment']
 		);
-		redirect('hotspot/users');
+		
+	
+		
+		$this->load->model('UserModal','emp');
+		$this->emp->insertUser($data);
+		redirect('hotspot/users');   
+
 	}
 
 	//delete user hotspot	
@@ -67,8 +83,12 @@ class Hotspot extends CI_Controller
 			".id" => '*' . $id,
 		)
 		);
+		
+		$this->load->model('UserModal','emp');
+		$this->emp->deleteUser($id);
 		redirect('hotspot/users');
 	}
+	//edit user 
 	public function editUser($id){
 		$ip = $this->session->userdata('ip');
 		$user = $this->session->userdata('user');
@@ -135,8 +155,6 @@ class Hotspot extends CI_Controller
 			'title' => 'Active Hotspot',
 			'totalhotspotactive' => count($hotspotactive),
 			'hotspotactive' => $hotspotactive,
-
-
 		];
 		$this->load->view('template/main', $data);
 		$this->load->view('hotspot/active', $data);
@@ -209,3 +227,4 @@ class Hotspot extends CI_Controller
 	}
 }
 ini_set("display_errors", 'off');
+

@@ -25,8 +25,8 @@
                 <thead>
                   <tr>
                     <th><?= $totalhotspotactive ?></th>
-                   
-                    <th>ip-Address</th>
+                    <th>Name</th>
+                    <th>Ip-Address</th>
                     <th>Mac-address</th>
                     <th>Uptime</th>
                     <th>Bytes In</th>
@@ -37,8 +37,9 @@
                 <tbody>
                   <?php foreach ($hotspotactive as $data) { ?>
                     <tr>
-                    <a href="<?= site_url('hotspot/delActive/' . $id)?>"onclick="return confirm('Delete Student  <?= $data['name']; ?> ?')"><i class="fa fa-trash" style="color: red"></i></a>
-                     <th><?= $data['address'];?></th>
+                    <th><a href="<?= site_url('hotspot/delActive/' . $id)?>"onclick="return confirm('Delete Student  <?= $data['user']; ?> ?')"><i class="fa fa-trash" style="color: red"></i></a></th>
+                    <th><?= $data['user']; ?> </th>
+                    <th><?= $data['address'];?></th>
                      <th><?= $data['mac-address'];?></th>
                      <th><?= $data['uptime'];?></th>
                      <th><?= formatBytes($data['bytes-in'], 2) ?></th>
