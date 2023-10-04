@@ -37,7 +37,8 @@
                 <tbody>
                   <?php foreach ($hotspotactive as $data) { ?>
                     <tr>
-                    <th><a href="<?= site_url('hotspot/delActive/' . $id)?>"onclick="return confirm('Delete Student  <?= $data['user']; ?> ?')"><i class="fa fa-trash" style="color: red"></i></a></th>
+                    <?php $id = str_replace('*','',$data[".id"]) ?>
+                    <th><a href="<?= site_url('hotspot/delActive/' . $id)?>"onclick="return confirm('Delete Student active  <?= $data['user']; ?> ?')"><i class="fa fa-trash" style="color: red"></i></a></th>
                     <th><?= $data['user']; ?> </th>
                     <th><?= $data['address'];?></th>
                      <th><?= $data['mac-address'];?></th>

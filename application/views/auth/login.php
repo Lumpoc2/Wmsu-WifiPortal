@@ -18,7 +18,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="3">WMSU WIFI PORTAL<b></b>LTE</a>
+    <a href="3">WMSU WIFI PORTAL</a>
   </div>
   <!-- /.login-logo -->
   <div class="card">

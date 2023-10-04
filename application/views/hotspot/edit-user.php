@@ -25,7 +25,7 @@
                         <div class="form-group">
                             <label for="server">Server</label>
                             <select name="server" id="server" class="form-control"  >
-                                <option><?= $user['server']; ?></option>
+                                <?= $user['server']; ?>
                                 <?php foreach ($server as $data) { ?>
                                     <option>
                                         <?= $data['name']; ?>
@@ -61,7 +61,6 @@
                     </div>
 
                     <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                         <button type="submit" class=" btn btn-success">Save</button>
                     </div>
                 </form>

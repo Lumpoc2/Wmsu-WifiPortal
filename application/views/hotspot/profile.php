@@ -42,7 +42,9 @@
                   <?php foreach ($hotspotprofile as $data) { ?>
                     <tr>
                     <?php $id = str_replace('*','',$data[".id"]) ?>
-                      <th><a href="<?= site_url('hotspot/delProfile/' . $id)?>"onclick="return confirm('Delete Student Profile  <?= $data['name']; ?> ?')"><i class="fa fa-trash" style="color: red"></i></a></th>
+                      <th>
+                      <a href="<?= site_url('hotspot/editUserProfile/' . $id)?>"><i class="fa fa-edit" style="color: green"></i></a>
+                        <a href="<?= site_url('hotspot/delProfile/' . $id)?>"onclick="return confirm('Delete Student Profile  <?= $data['name']; ?> ?')"><i class="fa fa-trash" style="color: red"></i></a></th>
                       <th><?= $data['name']; ?></th>
                       <th><?= $data['shared-users']; ?></th>
                       <th><?= $data['rate-limit']; ?></th>

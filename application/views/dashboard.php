@@ -38,7 +38,7 @@
                         <div class="inner">
                             <h3><?= $hotspotuser; ?></h3>
 
-                            <p>User Student</p>
+                            <p>Registered Student</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-person-add"></i>
@@ -53,7 +53,7 @@
                         <div class="inner">
                             <h3><?= $hotspotactive; ?></h3>
 
-                            <p>Active Users</p>
+                            <p>Active student</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-pie-graph"></i>
@@ -63,7 +63,23 @@
                 </div>
                 <!-- ./col -->
             </div>
+            <select name="interface" id="interface">
+                <?php foreach ($interface as $interface){?> 
+                    <option value="<?= $interface['name']?>"><?= $interface['name']?> </option>    
+                <?php }?>
+                
+            </select>
+            <div id="reloadtraffic"></div>
         </div>
     </div>
+
 </div>
+<script>
+    setInterval("reloadtraffic();",1000);
+    function reloadtraffic() {
+       var interface = $('#interfaces').val();
+       console.log(interface);
+        $('#reloadtraffic').load('<?=site_url('dashboard/traffic/')?>') + interface;
+    }
+</script>
 

@@ -40,8 +40,10 @@
                   </tr>
                 </thead>
                 <tbody>
+             
                   <?php foreach ($hotspotuser as $data) { ?>
                     <tr>
+                   <!-- //<?php var_dump($id)?> -->
                     <?php $id = str_replace('*','',$data[".id"]) ?>
                       <th>
                         <a href="<?= site_url('hotspot/editUser/' . $id)?>"><i class="fa fa-edit" style="color: green"></i></a>

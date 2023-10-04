@@ -54,19 +54,19 @@ class Hotspot extends CI_Controller
 			"comment" => $post['comment'],  
 			
 		));
-		$data = array(
-			'name' => $post['user'],
-			'password' => $post['password'],
-			'server' => $post['server'],
-			'profile' => $post['profile'],
-			'limit-uptime' => $timelimit,
-			'comment' => $post['comment']
-		);
+		// $data = array(
+		// 	'name' => $post['user'],
+		// 	'password' => $post['password'],
+		// 	'server' => $post['server'],
+		// 	'profile' => $post['profile'],
+		// 	'limit-uptime' => $timelimit,
+		// 	'comment' => $post['comment']
+		// );
 		
 	
 		
-		$this->load->model('UserModal','emp');
-		$this->emp->insertUser($data);
+		// $this->load->model('UserModal','emp');
+		// $this->emp->insertUser($data);
 		redirect('hotspot/users');   
 
 	}
@@ -81,11 +81,13 @@ class Hotspot extends CI_Controller
 		$API->connect($ip, $user, $password);
 		$API->comm("/ip/hotspot/user/remove", array(
 			".id" => '*' . $id,
-		)
-		);
+		));
 		
-		$this->load->model('UserModal','emp');
-		$this->emp->deleteUser($id);
+		// $this->load->model('UserModal');
+    	// $deleteResult = $this->UserModal->deleteUser($id);
+
+		// echo $deleteResult;
+
 		redirect('hotspot/users');
 	}
 	//edit user 
@@ -225,6 +227,50 @@ class Hotspot extends CI_Controller
 		);
 		redirect('hotspot/profile');
 	}
+	public function editUserProfile($id){
+		$ip = $this->session->userdata('ip');
+		$user = $this->session->userdata('user');
+		$password = $this->session->userdata('password');
+		$API = new Mikweb();
+		$API->connect($ip, $user, $password);
+		$getProfile = $API->comm("/ip/hotspot/user/profile/print",array(
+			"?.id" => '*' .  $id,
+		));
+		// var_dump($getuser);
+		// dim;
+		
+		
+
+		$data = [
+			'title' => 'Edit User',
+			'profile' => $getProfile[0],	
+		];
+		$this->load->view('template/main', $data);
+		$this->load->view('hotspot/edit-userprofile', $data);
+	}
+	public function saveEditUserProfile(){
+		$post = $this->input->post(null, true);
+		$ip = $this->session->userdata('ip');
+		$user = $this->session->userdata('user');
+		$password = $this->session->userdata('password');
+
+		$API = new Mikweb();
+		$API->connect($ip, $user, $password);
+
+	
+		$API->comm("/ip/hotspot/user/profile/set", array(
+			".id" => $post['id'],
+			"name" => $post['name'],
+			"shared-users" => $post['shared-users'],
+			"rate-limit" => $post['rate-limit'],
+			"session-timeout" => $post['session-timeout'],
+			"comment" => $post['comment'],
+		)
+		);
+		redirect('hotspot/users');
+	}
+	
+	
 }
 ini_set("display_errors", 'off');
 

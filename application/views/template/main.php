@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Dashboard</title>
+  <title>WMSU-ESU WIFI PORTAL</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="<?=base_url('assets/template/')?>https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -231,7 +231,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/tables/simple.html" class="nav-link">
+                <a href="<?= site_url('controll/block')?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Blocking Sites</p>
                 </a>
