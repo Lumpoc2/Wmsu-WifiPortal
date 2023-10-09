@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'wmsu-wifi-portal',
+	'hostname' => 'srv445.hstgr.io',
+	'username' => 'u991923994_fal',
+	'password' => '4oOdQE5*2Bk',
+	'database' => 'u991923994_fal_db',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
