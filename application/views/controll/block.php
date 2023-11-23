@@ -196,7 +196,7 @@
   </div>
   
 </div>
-<div class="content-wrapper">
+
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <div class="container-fluid">
@@ -208,53 +208,7 @@
   </section>
 
   <!-- Main content -->
-  <section class="content">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-12">
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Block site by DNS</h3>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-              <div class="pb-3">
-               
-              </div>
-              <table class="table table-bordered table-hover" id="dataTable">
-                <thead>
-                  <tr>
-                    <th>
-                      <?= $totaldhcp?>
-                    </th>
-                    <th>Address</th>
-                    <th>DNS-Server</th>
-                  </tr>
-                </thead>
-                <tbody>
-               
-                  <?php foreach ($dhcp as $data) { ?>
-                    <tr>
-                    <?php $id = str_replace('*','',$data[".id"]) ?>
-                      <th>
-                      <a href="<?= site_url('controll/editDhcp/' . $id)?>"><i class="fa fa-edit" style="color: green"></i></a>
-                      </th>
-                      <th><?=$data['address']?></th> 
-                      <th><?= $data['dns-server']; ?></th>
-                    </tr>
-                  <?php } ?>
-                </tbody>
-              </table>
-              <!-- /.card-body -->
-
-            </div>
-
-            <!-- /.col -->
-          </div>
-          <!-- /.row -->
-        </div>
-        <!-- /.container-fluid -->
-  </section>
+  
   <!-- /.content -->
   <div class="modal fade" id="modal-add-DNS" style="display: none;" aria-hidden="true">
     <div class="modal-dialog">

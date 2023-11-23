@@ -29,7 +29,6 @@
                 <thead>
                   <tr>
                     <th></th>
-                    <th>Image</th>
                     <th>Firstname</th>
                     <th>Lastname</th>
                     <th>Email</th>
@@ -41,11 +40,12 @@
                 </thead>
                 <tbody>
                   <?php foreach ($students as $student): ?>
+                    
                     <tr>
                       <td>
-                      <a href="<?= base_url('students/delete_student/' . $student->id) ?>"onclick="return confirm('Delete Student information')"><i class="fa fa-trash" style="color: red"></i></a>
+                      <a href="<?= base_url('students/delete_student/' . $student->id) ?>"class="delete-link"><i class="fa fa-trash" style="color: red"></i></a>
                       </td>
-                      <td><!-- Image --></td>
+                     
                       <td>
                         <?= $student->firstname ?>
                       </td>
@@ -66,9 +66,8 @@
                       </td>
                       <td>
                      <!-- Assuming this is in your view file -->
-                     <a href="<?= base_url('students/send_activation_emails/' .  $student->id) ?>">Send Activation Email</a>
-                        <button type="button" class="btn btn-danger" data-toggle="modal"
-                          data-target="#modal-add-user">Disable</button>
+                     <button class="btn btn-success"><a href="<?= base_url('students/send_activation_emails/' .  $student->id) ?>" style="color: white" >Activate</a></button>
+                        
                       </td>
                     </tr>
                   <?php endforeach; ?>
@@ -85,4 +84,27 @@
       <!-- /.container-fluid -->
   </section>
   <!-- /.content -->
+  <script>
+    $(document).ready(function() {
+        $('.delete-link').click(function(e) {
+            e.preventDefault();
+
+            var deleteUrl = $(this).attr('href');
+
+            Swal.fire({
+                title: 'Delete Student Information '  + '?',
+                text: "This action cannot be undone.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = deleteUrl;
+                }
+            });
+        });
+    });
+</script>
 </div>

@@ -38,7 +38,7 @@
                   <?php foreach ($hotspotactive as $data) { ?>
                     <tr>
                     <?php $id = str_replace('*','',$data[".id"]) ?>
-                    <th><a href="<?= site_url('hotspot/delActive/' . $id)?>"onclick="return confirm('Delete Student active  <?= $data['user']; ?> ?')"><i class="fa fa-trash" style="color: red"></i></a></th>
+                    <th><a href="<?= site_url('hotspot/delActive/' . $id)?>"class="delete-link"  data-name="<?= $data['user']; ?> ?')"><i class="fa fa-trash" style="color: red"></i></a></th>
                     <th><?= $data['user']; ?> </th>
                     <th><?= $data['address'];?></th>
                      <th><?= $data['mac-address'];?></th>
@@ -61,4 +61,28 @@
       <!-- /.container-fluid -->
   </section>
   <!-- /.content -->
+  <script>
+    $(document).ready(function() {
+        $('.delete-link').click(function(e) {
+            e.preventDefault();
+
+            var deleteUrl = $(this).attr('href');
+            var Activename = $(this).data('name');
+
+            Swal.fire({
+                title: 'Delete Active student ' + Activename + '?',
+                text: "This action cannot be undone.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = deleteUrl;
+                }
+            });
+        });
+    });
+</script>
 </div>

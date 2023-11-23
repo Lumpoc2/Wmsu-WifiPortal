@@ -7,7 +7,7 @@
             <h3>Hotspot <?= $title ?></h3>
         </div>
                 <div class="col-lg-6">
-                <form action="<?= site_url('hotspot/saveEditUser'); ?>" method="POST">
+                <form action="<?= site_url('hotspot/saveEditUser'); ?>" method="POST" class="edit-link">
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="name">Name</label>
@@ -46,4 +46,27 @@
                 </div>
         </div>
     </div>
+    <script>
+    $(document).ready(function() {
+        $('.edit-link').submit(function(e) {
+            e.preventDefault(); // Prevent the form from submitting normally
+
+            var formData = $(this).serialize(); // Serialize form data
+
+            $.ajax({
+                type: "POST",
+                url: $(this).attr('action'),
+                data: formData,
+                success: function(response) {
+                    Swal.fire({
+                        title: 'Success',
+                        text: 'Do you want to update more?',
+                        icon: 'success',
+                        confirmButtonText: 'Enter'
+                    });
+                }
+            });
+        });
+    });
+</script>
 </div>

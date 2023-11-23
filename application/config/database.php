@@ -75,9 +75,9 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'srv445.hstgr.io',
+	'hostname' => '193.203.166.24',
 	'username' => 'u991923994_fal',
-	'password' => '4oOdQE5*2Bk',
+	'password' => 'fw4y6=gM',
 	'database' => 'u991923994_fal_db',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',

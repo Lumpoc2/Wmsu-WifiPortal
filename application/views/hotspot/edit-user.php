@@ -1,3 +1,4 @@
+
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
@@ -7,7 +8,7 @@
             <h3>Hotspot <?= $title ?></h3>
         </div>
                 <div class="col-lg-6">
-                <form action="<?= site_url('hotspot/saveEditUser'); ?>" method="POST">
+                <form action="<?= site_url('hotspot/saveEditUser'); ?>" method="POST" id="editUserForm">
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="user">User</label>
@@ -59,7 +60,6 @@
                                 placeholder="Enter Time Limit">
                         </div>
                     </div>
-
                     <div class="modal-footer justify-content-between">
                         <button type="submit" class=" btn btn-success">Save</button>
                     </div>
@@ -67,4 +67,5 @@
                 </div>
         </div>
     </div>
+    
 </div>

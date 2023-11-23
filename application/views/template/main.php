@@ -150,7 +150,6 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-      <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       
     </a>
 
@@ -292,6 +291,7 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="<?=base_url('assets/template/')?>dist/js/pages/dashboard.js"></script>
 <!-- Code injected by live-server -->
+
 <script>
   $(function () {
     $('#dataTable').DataTable({
@@ -341,6 +341,30 @@
 		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
 	}
 	// ]]>
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    $(document).ready(function() {
+        $('#editUserForm').submit(function(e) {
+            e.preventDefault(); // Prevent the form from submitting normally
+
+            var formData = $(this).serialize(); // Serialize form data
+
+            $.ajax({
+                type: "POST",
+                url: $(this).attr('action'),
+                data: formData,
+                success: function(response) {
+                    Swal.fire({
+                        title: 'Success',
+                        text: 'Do you want to  update more?',
+                        icon: 'success',
+                        confirmButtonText: 'Enter'
+                    });
+                }
+            });
+        });
+    });
 </script>
 
 </body>

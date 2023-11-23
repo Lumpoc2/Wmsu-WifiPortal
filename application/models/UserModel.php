@@ -20,5 +20,6 @@ class UserModel extends CI_Model
         $this->db->where('id', $id);
         $this->db->delete('student_tbl');
     }
+  
 
 }

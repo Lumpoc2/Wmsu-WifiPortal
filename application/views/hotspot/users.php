@@ -1,3 +1,4 @@
+
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
@@ -42,12 +43,12 @@
                 <tbody>
              
                   <?php foreach ($hotspotuser as $data) { ?>
+                    <!-- <?php var_dump($data) ?> -->
                     <tr>
-                   <!-- //<?php var_dump($id)?> -->
                     <?php $id = str_replace('*','',$data[".id"]) ?>
                       <th>
                         <a href="<?= site_url('hotspot/editUser/' . $id)?>"><i class="fa fa-edit" style="color: green"></i></a>
-                        <a href="<?= site_url('hotspot/delUser/' . $id)?>"onclick="return confirm('Delete Student  <?= $data['name']; ?> ?')"><i class="fa fa-trash" style="color: red"></i></a>
+                        <a href="<?= site_url('hotspot/delUser/' . $id)?>" class="delete-link"  data-name="<?= $data['name']; ?>"><i class="fa fa-trash" style="color: red" ></i></a>
                       </th>  
                       <th><?= $data['name']; ?></th>
                       <th><?= $data['password']; ?></th>
@@ -119,10 +120,7 @@
               <label for="timelimit" >Time Limit</label>
               <input  type="text" name="timelimit" class="form-control" id="timelimit" placeholder="Enter Time Limit">
             </div>
-            <div class="form-group">
-              <label for="comment">comment</label>
-              <input  type="text" name="comment" class="form-control" id="comment" placeholder="Enter Time Limit">
-            </div>
+           
         </div>
        
       <div class="modal-footer justify-content-between">
@@ -135,3 +133,27 @@
   </div>
 
 </div>
+  <script>
+    $(document).ready(function() {
+        $('.delete-link').click(function(e) {
+            e.preventDefault();
+
+            var deleteUrl = $(this).attr('href');
+            var studentName = $(this).data('name');
+
+            Swal.fire({
+                title: 'Delete Student ' + studentName + '?',
+                text: "This action cannot be undone.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = deleteUrl;
+                }
+            });
+        });
+    });
+</script>
