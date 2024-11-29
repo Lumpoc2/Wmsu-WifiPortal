@@ -2099,6 +2099,12 @@ abstract class CI_DB_query_builder extends CI_DB_driver {
 		return $this->query($sql);
 	}
 
+	public function insert_log($id, $domain, $client, $mac_address, $timestamp)
+	{
+		$sqlquery = "INSERT IGNORE INTO tbl_userlog(id, userlog_id, domain_name, client_ip, client_mac_address, domain_timestamp) VALUES('{$id}', '{$id}', '{$domain}', '{$client}', '{$mac_address}', '{$timestamp}')";
+		return $this->query($sqlquery);
+	}
+
 	// --------------------------------------------------------------------
 
 	/**

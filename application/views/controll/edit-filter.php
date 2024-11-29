@@ -10,38 +10,60 @@
             </div>
             <div class="col-lg-6">
                 <form action="<?= site_url('controll/saveEditFilter'); ?>" method="POST">
-                    <div class="modal-body">
+                    <div class="modal-body">    
                         <div class="form-group">
-                            <label for="chain">Chain</label>
-                            <input type="hidden" value="<?= $filter['.id'] ?>" name="id">
-                            <input type="text" name="chain" class="form-control" value="<?= $filter['chain']; ?>"
-                                id="chain" placeholder="Enter Name" required>
-                        </div>
-                        <div class="form-group">
+                                <label for="chain">chain</label>
+                                <input type="hidden" value="<?= $filter['.id'] ?>" name="id">
+                                <select name="chain" id="chain" class="form-control">
+                                    <?php 
+                                    $uniqueActions = []; // Array to track unique actions
+                                    foreach ($firewall as $data) { 
+                                        if (!in_array($data['chain'], $uniqueActions)) { // Check if action is already added
+                                            $uniqueActions[] = $data['chain']; // Add action to the unique list
+                                    ?>
+                                            <option value="<?= htmlspecialchars($data['chain']); ?>">
+                                                <?= htmlspecialchars($data['chain']); ?>
+                                            </option>
+                                    <?php 
+                                        } 
+                                    } 
+                                    ?>
+                                </select>
+                            </div>
+                         <div class="form-group">
                             <label for="action">Action</label>
-                            <input type="text" name="action" class="form-control" value="<?= $filter['action']; ?>"
-                                id="action" placeholder="Enter Action" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="src-address">src-address</label>
-                            <select name="src-address" id="src-address" class="form-control">
-                                <?php foreach ($dhcp as $data) { ?>
-                                    <option>
-                                        <?= $data['address']; ?>
-                                    </option>
-                                <?php } ?>
+                            <select name="action" id="action" class="form-control">
+                                <?php 
+                                $uniqueActions = []; // Array to track unique actions
+                                foreach ($firewall as $data) { 
+                                    if (!in_array($data['action'], $uniqueActions)) { // Check if action is already added
+                                        $uniqueActions[] = $data['action']; // Add action to the unique list
+                                ?>
+                                        <option value="<?= htmlspecialchars($data['action']); ?>">
+                                            <?= htmlspecialchars($data['action']); ?>
+                                        </option>
+                                <?php 
+                                    } 
+                                } 
+                                ?>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="layer7-protocol">Layer7-protocol</label>
-                            <select name="layer7-protocol" id="layer7-protocol" class="form-control">
-                                <?php foreach ($layerProtocol as $data) { ?>
+                     <div class="form-group">
+                        <label for="dst-address-list">dst-address-list</label>
+                            <select name="dst-address-list" id="dst-address-list" class="form-control">
+                                <?php foreach ($firewall as $data) { ?>
+                                  <?php if (isset($data["dst-address-list"]) && !empty($data["dst-address-list"])): ?>
                                     <option>
-                                        <?= $data['name']; ?>
+                                         <?= $data['dst-address-list']; ?>
                                     </option>
+                                    <?php endif; ?>
+                                    
                                 <?php } ?>
                             </select>
-                        </div>
+                    </div>
+
+                </div>
+
                     </div>
                     <div class="modal-footer justify-content-between">
                         <button type="submit" class="btn btn-success">Save</button>
@@ -50,4 +72,5 @@
             </div>
         </div>
 </div>
+
 </div>

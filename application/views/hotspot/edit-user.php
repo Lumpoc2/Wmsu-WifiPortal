@@ -8,18 +8,18 @@
             <h3>Hotspot <?= $title ?></h3>
         </div>
                 <div class="col-lg-6">
-                <form action="<?= site_url('hotspot/saveEditUser'); ?>" method="POST" id="editUserForm">
+                <form action="<?= site_url('Hotspot/saveEditUser'); ?>" method="POST" id="editUserForm">
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="user">User</label>
                             <input type="hidden" value="<?= $user['.id'] ?>" name="id">
-                            <input type="text" name="user" class="form-control" value=" <?= $user['name']; ?>" id="user" placeholder="Enter User"
+                            <input required type="text" name="user" class="form-control" value=" <?= $user['name']; ?>" id="user" placeholder="Enter User"
                                 required>
                         </div>
 
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" name="password" class="form-control" value=" <?= $user['password']; ?>" id="password"
+                            <input required type="password" name="password" class="form-control" value=" <?= $user['password']; ?>" id="password"
                                 placeholder="Enter Password" required>
                         </div>
 
@@ -51,12 +51,12 @@
 
                         <div class="form-group">
                             <label for="timelimit">Time Limit</label>
-                            <input type="text" name="timelimit" class="form-control"  value=" <?= $user['limit-uptime']; ?>" id="timelimit"
+                            <input required type="text" name="timelimit" class="form-control"  value=" <?= $user['limit-uptime']; ?>" id="timelimit"
                                 placeholder="Enter Time Limit">
                         </div>
                         <div class="form-group">
                             <label for="comment">comment</label>
-                            <input type="text" name="comment" class="form-control"  value=" <?= $user['comment']; ?>" id="comment"
+                            <input required type="text" name="comment" class="form-control"  value=" <?= $user['comment']; ?>" id="comment"
                                 placeholder="Enter Time Limit">
                         </div>
                     </div>
@@ -67,5 +67,27 @@
                 </div>
         </div>
     </div>
-    
+    <script>
+        $(document).ready(function() {
+            $('.edit-link').submit(function(e) {
+                e.preventDefault(); // Prevent the form from submitting normally
+
+                var formData = $(this).serialize(); // Serialize form data
+
+                $.ajax({
+                    type: "POST",
+                    url: $(this).attr('action'),
+                    data: formData,
+                    success: function(response) {
+                        Swal.fire({
+                            title: 'Success',
+                            text: 'Data has been updated successfully.',
+                            icon: 'success',
+                            confirmButtonText: 'Enter'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 </div>

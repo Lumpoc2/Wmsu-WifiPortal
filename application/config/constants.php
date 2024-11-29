@@ -83,3 +83,8 @@ defined('EXIT_USER_INPUT')     OR define('EXIT_USER_INPUT', 7); // invalid user 
 defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
+
+
+defined('HASHED_IPADDRESS')    OR define('HASHED_IPADDRESS', '5a5df787c87846c949f96d5eeb8355a3ac9ae109'); // IP ADDRESS HASHED
+defined('HASHED_USERNAME')     OR define('HASHED_USERNAME', 'd033e22ae348aeb5660fc2140aec35850c4da997'); // USERNAME HASHED
+defined('HASHED_PASSWORD')     OR define('HASHED_PASSWORD', 'f1b5a91d4d6ad523f2610114591c007e75d15084'); // PASSWORD HASHED

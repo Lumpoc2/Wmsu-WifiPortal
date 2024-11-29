@@ -16,7 +16,7 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Student Information</h3>
+              <h3 class="card-title">User Profile</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -45,9 +45,9 @@
                     <tr>
                       <?php $id = str_replace('*', '', $data[".id"]) ?>
                       <th>
-                        <a href="<?= site_url('hotspot/editUserProfile/' . $id) ?>"><i class="fa fa-edit"
+                        <a href="<?= site_url('Hotspot/editUserProfile/' . $id) ?>"><i class="fa fa-edit"
                             style="color: green"></i></a>
-                        <a href="<?= site_url('hotspot/delProfile/' . $id) ?>" class="delete-link"
+                        <a href="<?= site_url('Hotspot/delProfile/' . $id) ?>" class="delete-link"
                           data-name="<?= $data['name']; ?>"><i class="fa fa-trash" style="color: red"></i></a>
                       </th>
                       <th>
@@ -90,7 +90,7 @@
           <span aria-hidden="true"></span>
         </button>
       </div>
-      <form action="<?= site_url('hotspot/addUserProfile'); ?>" method="POST" class='user-Profile'>
+      <form action="<?= site_url('Hotspot/addUserProfile'); ?>" method="POST" class='user-Profile'>
         <div class="modal-body">
           <div class="form-group">
             <label for="user">User</label>
@@ -183,6 +183,30 @@
 });
 
 
+  </script>
+  <script>
+    $(document).ready(function () {
+      // Function to update the textarea content
+      function updateTextarea() {
+          $.ajax({
+              type: "GET",
+              url: "<?= site_url('Hotspot/update_userlog_realtime'); ?>",
+              success: function(response) {
+                  // Update textarea content with the new data
+                  $("#userlogs").text($("#userlogs").text()+response);
+                  var textarea = document.getElementById('userlogs');
+                  textarea.scrollTop = textarea.scrollHeight;
+                  //$("#userlogs").text("asdasdas");
+
+                  // Set a timeout for the next update
+                  setTimeout(updateTextarea, 2000); // 2000 milliseconds (2 seconds)
+              }
+          });
+      }
+
+      // Initial call to start the update process
+      updateTextarea();
+    });
   </script>
 
 
